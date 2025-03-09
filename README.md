@@ -2,13 +2,14 @@
 Requirements
 ------------
 
-* PHP 8.2.0 or higher;
+* PHP 8.3.0 or higher;
 
 Installation
 ------------
-[Download Symfony CLI][4] and use the `symfony` binary installed
+[Download Symfony CLI] and use the `symfony` binary installed
 on your computer to run this command:
-[Download Composer][6] and use the `composer` binary installed
+
+[Download Composer] and use the `composer` binary installed
 on your computer to run these commands:
 
 ```bash
@@ -26,6 +27,8 @@ symfony server:start
 
 Documentation
 -----
+Swagger is used
+
 go to http://127.0.0.1:8000/api/doc
 
 Tests
