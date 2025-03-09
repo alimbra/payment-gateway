@@ -35,5 +35,5 @@ Execute this command to run tests:
 
 ```bash
 cd payment-gateway/
-.vendor/bin/phpunit
+./vendor/bin/phpunit
 ```
