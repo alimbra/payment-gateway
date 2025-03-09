@@ -17,10 +17,12 @@ class FromRequestToToken
         protected Request $request,
         protected string $tokenName = self::TOKEN_NAME,
     ) {
-        /** @var array<string, string> $content */
+        /** @var array{string}|array{string, amount: int} $content */
         $content = json_decode($request->getContent(), true);
+        $token = isset($content[$tokenName]) && is_string($content[$tokenName]) ? $content[$tokenName] : null;
         $this->identifierWithAmountDto = new IdentifierWithAmountDto(
-            token: $content[$tokenName] ?? '', amount: $content[self::AMOUNT_NAME] ?? ''
+            token: $token,
+            amount: !isset($content[self::AMOUNT_NAME]) ? '' : (string) $content[self::AMOUNT_NAME],
         );
     }
 

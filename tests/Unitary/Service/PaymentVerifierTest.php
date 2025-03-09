@@ -31,7 +31,7 @@ class PaymentVerifierTest extends KernelTestCase
         $creditCard = new CreditCard(
             cardNumber: '5503550355035503',
             expiryDate: '10/26',
-            ccv: '234',
+            cvv: '234',
             amount: '100000',
         );
         $result = self::$paymentVerifier->generateToken($creditCard);
@@ -43,7 +43,7 @@ class PaymentVerifierTest extends KernelTestCase
         $creditCard = new CreditCard(
             cardNumber: '55035503550',
             expiryDate: '10/26',
-            ccv: '34',
+            cvv: '34',
             amount: '100000',
         );
         $this->expectException(WrongDataException::class);
@@ -55,7 +55,7 @@ class PaymentVerifierTest extends KernelTestCase
         $creditCard = new CreditCard(
             cardNumber: '4503550355023245',
             expiryDate: '10/26',
-            ccv: '344',
+            cvv: '344',
             amount: '100000',
         );
         self::assertNull(self::$paymentVerifier->generateToken($creditCard));

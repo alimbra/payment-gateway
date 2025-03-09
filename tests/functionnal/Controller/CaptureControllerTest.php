@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\functionnalTest\Controller;
+namespace App\Tests\functionnal\Controller;
 
 use App\Dto\CreditCard;
 use App\Dto\CreditCardWithPayment;
@@ -29,7 +29,7 @@ class CaptureControllerTest extends WebTestCase
             creditCard: new CreditCard(
                 cardNumber: '5503550355035503',
                 expiryDate: '10/26',
-                ccv: '234',
+                cvv: '234',
                 amount: '100000',
             ),
             status: EnumStatusOperation::RESERVED->value,
@@ -38,7 +38,7 @@ class CaptureControllerTest extends WebTestCase
 
         $client->request(
             method: Request::METHOD_POST,
-            uri: '/capture',
+            uri: '/api/capture',
             content: json_encode(
                 [
                     'auth_token' => 'credit_id',
@@ -71,7 +71,7 @@ class CaptureControllerTest extends WebTestCase
             creditCard: new CreditCard(
                 cardNumber: '5503550355035503',
                 expiryDate: '10/26',
-                ccv: '234',
+                cvv: '234',
                 amount: '100000',
             ),
             status: EnumStatusOperation::RESERVED->value,
@@ -80,7 +80,7 @@ class CaptureControllerTest extends WebTestCase
 
         $client->request(
             method: Request::METHOD_POST,
-            uri: '/capture',
+            uri: '/api/capture',
             content: json_encode(
                 [
                     'auth_token' => 'credit_id',
@@ -110,7 +110,7 @@ class CaptureControllerTest extends WebTestCase
             creditCard: new CreditCard(
                 cardNumber: '5503550355035503',
                 expiryDate: '10/26',
-                ccv: '234',
+                cvv: '234',
                 amount: '100000',
             ),
             status: EnumStatusOperation::PROCESSED->value,
@@ -119,7 +119,7 @@ class CaptureControllerTest extends WebTestCase
 
         $client->request(
             method: Request::METHOD_POST,
-            uri: '/capture',
+            uri: '/api/capture',
             content: json_encode(
                 [
                     'auth_token' => 'credit_id',

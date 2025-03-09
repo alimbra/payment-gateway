@@ -31,7 +31,7 @@ class Validator
     {
         return
             preg_match('/[0-9]{16}$/', $creditCard->getCardNumber())
-            && preg_match('/[0-9]{3}$/', $creditCard->getCcv())
+            && preg_match('/[0-9]{3}$/', $creditCard->getCvv())
             && preg_match('/[0-1][0-2]\/[0-9]{2}$/', $creditCard->getExpiryDate())
             && (int) $creditCard->getAmount() >= self::MIN_AMOUNT;
     }

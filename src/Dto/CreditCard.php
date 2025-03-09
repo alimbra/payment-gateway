@@ -12,7 +12,7 @@ readonly class CreditCard
         #[\SensitiveParameter]
         protected string $expiryDate,
         #[\SensitiveParameter]
-        protected string $ccv,
+        protected string $cvv,
         protected string $amount,
     ) {
     }
@@ -32,9 +32,9 @@ readonly class CreditCard
         return $this->cardNumber;
     }
 
-    public function getCcv(): string
+    public function getCvv(): string
     {
-        return $this->ccv;
+        return $this->cvv;
     }
 
     public function showOnlyFourNumbersOfCardNumber(): string

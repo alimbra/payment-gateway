@@ -22,7 +22,7 @@ final class AuthorizationController extends AbstractController
     #[OA\RequestBody(
         description: 'Content of the credit card',
         content: [
-            new OA\MediaType('multipart/form-data', schema: new OA\Schema(
+            new OA\MediaType(mediaType: 'application/json', schema: new OA\Schema(
                 properties: [
                     new OA\Property(
                         property: 'card_number',
@@ -60,7 +60,7 @@ final class AuthorizationController extends AbstractController
                         type: 'string',
                     ),
                     new OA\Property(
-                        property: 'token',
+                        property: 'auth_token',
                         description: 'the generate token of the credit Card With Payment',
                         type: 'string',
                     ),
@@ -120,7 +120,7 @@ final class AuthorizationController extends AbstractController
         try {
             return $this->json([
                 'status' => 'success',
-                'token' => $paymentVerifier->generateToken($creditCard),
+                'auth_token' => $paymentVerifier->generateToken($creditCard),
             ]);
         } catch (\Throwable $e) {
             if ($e instanceof WrongDataException) {

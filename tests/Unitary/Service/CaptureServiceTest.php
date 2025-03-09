@@ -41,7 +41,7 @@ class CaptureServiceTest extends KernelTestCase
             creditCard: new CreditCard(
                 cardNumber: '5503550355035503',
                 expiryDate: '10/26',
-                ccv: '234',
+                cvv: '234',
                 amount: '100000',
             ),
             status: EnumStatusOperation::RESERVED->value,
@@ -65,7 +65,7 @@ class CaptureServiceTest extends KernelTestCase
             creditCard: new CreditCard(
                 cardNumber: '5503550355035503',
                 expiryDate: '10/26',
-                ccv: '234',
+                cvv: '234',
                 amount: '100000',
             ),
             status: EnumStatusOperation::RESERVED->value,
@@ -87,7 +87,7 @@ class CaptureServiceTest extends KernelTestCase
             creditCard: new CreditCard(
                 cardNumber: '5503550355035503',
                 expiryDate: '10/26',
-                ccv: '234',
+                cvv: '234',
                 amount: '100000',
             ),
             status: EnumStatusOperation::PROCESSED->value,

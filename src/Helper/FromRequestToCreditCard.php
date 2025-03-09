@@ -18,13 +18,13 @@ class FromRequestToCreditCard
     public function __construct(
         protected Request $request,
     ) {
-        /** @var array<string, string> $content */
+        /** @var array{card_number: string, expiry_date: string, cvv: string, amount: int} $content */
         $content = json_decode($request->getContent(), true);
         $this->creditCard = new CreditCard(
-            cardNumber: $content[self::CARD_NUMBER] ?? '',
-            expiryDate: $content[self::EXPIRY_DATE] ?? '',
-            ccv: $content[self::CVV] ?? '',
-            amount: $content[self::AMOUNT] ?? '',
+            cardNumber: $content[self::CARD_NUMBER],
+            expiryDate: $content[self::EXPIRY_DATE],
+            cvv: $content[self::CVV],
+            amount: (string) $content[self::AMOUNT],
         );
     }
 

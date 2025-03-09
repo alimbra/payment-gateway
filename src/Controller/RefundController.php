@@ -23,7 +23,7 @@ final class RefundController extends AbstractController
     #[OA\RequestBody(
         description: 'the id of transaction',
         content: [
-            new OA\MediaType('multipart/form-data', schema: new OA\Schema(
+            new OA\MediaType('application/json', schema: new OA\Schema(
                 properties: [
                     new OA\Property(
                         property: 'transaction_id',

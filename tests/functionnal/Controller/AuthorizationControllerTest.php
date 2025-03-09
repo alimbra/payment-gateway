@@ -21,12 +21,12 @@ class AuthorizationControllerTest extends WebTestCase
         $client = self::createClient();
         $client->request(
             method: Request::METHOD_POST,
-            uri: '/authorization',
+            uri: '/api/authorization',
             content: json_encode(
                 [
                     'card_number' => '5503550355035503',
                     'expiry_date' => '10/26',
-                    'cvv' => 405,
+                    'cvv' => "405",
                     'amount' => 100000,
                 ])
         );
@@ -34,13 +34,13 @@ class AuthorizationControllerTest extends WebTestCase
         $response = $client->getResponse();
         // we check if the response has both token and status
         $content = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
-        self::assertArrayHasKey('token', $content);
+        self::assertArrayHasKey('auth_token', $content);
         self::assertArrayHasKey('status', $content);
         self::assertSame('success', $content['status']);
         // we check if the token refers to the saved CreditCardWithPayment
         $container = self::getContainer()->get(DbManagerInterface::class);
         self::assertInstanceOf(DbManagerInterface::class, $container);
-        $creditCard = $container->get($content['token']);
+        $creditCard = $container->get($content['auth_token']);
         self::assertInstanceOf(CreditCardWithPayment::class, $creditCard);
         self::assertSame($creditCard->getCardNumber(), '5503550355035503');
     }
@@ -50,12 +50,12 @@ class AuthorizationControllerTest extends WebTestCase
         $client = self::createClient();
         $client->request(
             method: Request::METHOD_POST,
-            uri: '/authorization',
+            uri: '/api/authorization',
             content: json_encode(
                 [
                     'card_number' => 'wrong card number',
                     'expiry_date' => '10/26',
-                    'cvv' => 405,
+                    'cvv' => "405",
                     'amount' => 100000,
                 ])
         );

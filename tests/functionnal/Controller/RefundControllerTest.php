@@ -31,7 +31,7 @@ class RefundControllerTest extends WebTestCase
                 creditCard: new CreditCard(
                     cardNumber: '5503550355035503',
                     expiryDate: '10/26',
-                    ccv: '234',
+                    cvv: '234',
                     amount: '100000',
                 ),
                 status: EnumStatusOperation::PROCESSED->value,
@@ -40,7 +40,7 @@ class RefundControllerTest extends WebTestCase
 
         $client->request(
             method: Request::METHOD_POST,
-            uri: '/refund',
+            uri: '/api/refund',
             content: json_encode(
                 [
                     'transaction_id' => 'transaction_id',
@@ -70,7 +70,7 @@ class RefundControllerTest extends WebTestCase
 
         $client->request(
             method: Request::METHOD_POST,
-            uri: '/refund',
+            uri: '/api/refund',
             content: json_encode(
                 [
                     'transaction_id' => 'not_exisiting',
@@ -98,7 +98,7 @@ class RefundControllerTest extends WebTestCase
                 creditCard: new CreditCard(
                     cardNumber: '5503550355035503',
                     expiryDate: '10/26',
-                    ccv: '234',
+                    cvv: '234',
                     amount: '100000',
                 ),
                 status: EnumStatusOperation::REFUNDED->value,
@@ -108,7 +108,7 @@ class RefundControllerTest extends WebTestCase
 
         $client->request(
             method: Request::METHOD_POST,
-            uri: '/refund',
+            uri: '/api/refund',
             content: json_encode(
                 [
                     'transaction_id' => 'transaction_id',
