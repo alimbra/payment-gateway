@@ -22,3 +22,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    _instanceof:
+        App\Service\Providers\ProviderAuthorizationInterface:
+            tags: ['app.authorization.provider']
+
+    App\Service\PaymentVerifier:
+        arguments: [!tagged_locator 'app.authorization.provider']

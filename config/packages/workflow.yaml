@@ -1,0 +1,23 @@
+framework:
+    workflows:
+        operation_payment:
+            type: state_machine
+            marking_store:
+                type: 'method'
+                property: 'status'
+            supports:
+                - App\Dto\CreditCardWithPayment
+            initial_marking: available
+            places:
+                - available
+                - reserved
+                - processed
+                - refunded
+
+            transitions:
+                capture_success:
+                    from: reserved
+                    to: processed
+                refund_success:
+                    from: processed
+                    to: refunded
