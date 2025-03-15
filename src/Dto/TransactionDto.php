@@ -7,7 +7,7 @@ namespace App\Dto;
 class TransactionDto
 {
     public function __construct(
-        protected CreditCardWithPayment $creditCardWithPayment,
+        private CreditCardWithPayment $creditCardWithPayment,
         readonly string $amount,
     ) {
     }

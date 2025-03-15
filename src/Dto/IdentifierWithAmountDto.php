@@ -6,7 +6,7 @@ namespace App\Dto;
 
 readonly class IdentifierWithAmountDto
 {
-    public function __construct(protected ?string $token = null, protected ?string $amount = null)
+    public function __construct(private ?string $token = null, private ?string $amount = null)
     {
     }
 

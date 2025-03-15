@@ -20,15 +20,15 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
-class PaymentVerifier
+readonly class PaymentVerifier
 {
     public function __construct(
-        protected ContainerInterface $container,
-        protected TokenManager $tokenManager,
-        protected DbManagerInterface $dbManager,
-        protected LoggerInterface $logger,
-        protected Validator $validator,
-        #[Autowire(env: 'PROVIDER_BALANCE')] protected string $providerBalance,
+        private ContainerInterface $container,
+        private TokenManager $tokenManager,
+        private DbManagerInterface $dbManager,
+        private LoggerInterface $logger,
+        private Validator $validator,
+        #[Autowire(env: 'PROVIDER_BALANCE')] private string $providerBalance,
     ) {
     }
 

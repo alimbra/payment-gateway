@@ -9,8 +9,8 @@ use App\Enum\EnumStatusOperation;
 class CreditCardWithPayment
 {
     public function __construct(
-        readonly protected CreditCard $creditCard,
-        protected string $status = EnumStatusOperation::RESERVED->value,
+        readonly private CreditCard $creditCard,
+        private string $status = EnumStatusOperation::RESERVED->value,
     ) {
     }
 

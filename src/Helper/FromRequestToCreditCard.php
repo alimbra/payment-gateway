@@ -13,10 +13,10 @@ class FromRequestToCreditCard
     public const EXPIRY_DATE = 'expiry_date';
     public const CVV = 'cvv';
     public const AMOUNT = 'amount';
-    protected CreditCard $creditCard;
+    private CreditCard $creditCard;
 
     public function __construct(
-        protected Request $request,
+        Request $request,
     ) {
         /** @var array{card_number: string, expiry_date: string, cvv: string, amount: int} $content */
         $content = json_decode($request->getContent(), true);

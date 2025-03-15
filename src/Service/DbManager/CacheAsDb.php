@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace App\Service\DbManager;
 
-use Exception;
 use Psr\Cache\CacheItemPoolInterface;
-use Psr\Cache\InvalidArgumentException;
 
-class CacheAsDb implements DbManagerInterface
+readonly class CacheAsDb implements DbManagerInterface
 {
     public function __construct(
-        protected CacheItemPoolInterface $cacheItemPool,
+        private CacheItemPoolInterface $cacheItemPool,
     ) {
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function save(string $id, object $object): void
     {

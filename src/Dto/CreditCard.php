@@ -8,12 +8,12 @@ readonly class CreditCard
 {
     public function __construct(
         #[\SensitiveParameter]
-        protected string $cardNumber,
+        private string $cardNumber,
         #[\SensitiveParameter]
-        protected string $expiryDate,
+        private string $expiryDate,
         #[\SensitiveParameter]
-        protected string $cvv,
-        protected string $amount,
+        private string $cvv,
+        private string $amount,
     ) {
     }
 

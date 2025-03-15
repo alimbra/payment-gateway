@@ -16,14 +16,14 @@ use App\Service\TokenManager\TokenManager;
 use App\Validator\Validator;
 use Psr\Log\LoggerInterface;
 
-class CaptureService
+readonly class CaptureService
 {
     public function __construct(
-        protected DbManagerInterface $dbManager,
-        protected OperationsPayment $operationsPayment,
-        protected TokenManager $tokenManager,
-        protected Validator $validator,
-        private readonly LoggerInterface $logger,
+        private DbManagerInterface $dbManager,
+        private OperationsPayment $operationsPayment,
+        private TokenManager $tokenManager,
+        private Validator $validator,
+        private LoggerInterface $logger,
     ) {
     }
 
@@ -52,7 +52,7 @@ class CaptureService
 
         $creditCardPayment = $this->dbManager->get($token->getToken());
         if (!$creditCardPayment instanceof CreditCardWithPayment) {
-            $this->logger->error('CreditCardWithPayment not found with key'.$token->getToken());
+            $this->logger->error('CreditCardWithPayment not found with key '.$token->getToken());
             throw new \Exception(message: 'Payment not found');
         }
 

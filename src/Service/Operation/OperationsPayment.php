@@ -16,7 +16,7 @@ use Symfony\Component\Workflow\WorkflowInterface;
 readonly class OperationsPayment
 {
     public function __construct(
-        protected WorkflowInterface $operationPayment,
+        private WorkflowInterface $operationPayment,
         private LoggerInterface $logger,
     ) {
     }
@@ -29,7 +29,7 @@ readonly class OperationsPayment
     {
         if (!$this->operationPayment->can($creditCard, EnumTransactionOperations::CAPTURE_SUCCESS->value)) {
             if (EnumStatusOperation::PROCESSED->value === $creditCard->getStatus()) {
-                $this->logger->warning('Payment already processed for'.$creditCard->showOnlyFourNumbersOfCardNumber());
+                $this->logger->warning('Payment already processed for '.$creditCard->showOnlyFourNumbersOfCardNumber());
                 throw new AlreayProcessedException(message: 'payment already Processed');
             }
             $this->logger->warning('unable to process capture for '.$creditCard->showOnlyFourNumbersOfCardNumber());
@@ -47,7 +47,7 @@ readonly class OperationsPayment
     {
         if (!$this->operationPayment->can($transactionDto, EnumTransactionOperations::REFUND_SUCCESS->value)) {
             if (EnumStatusOperation::REFUNDED->value === $transactionDto->getStatus()) {
-                $this->logger->warning('Payment already processed for'.$transactionDto->showOnlyFourNumbersOfCardNumber());
+                $this->logger->warning('Payment already processed for '.$transactionDto->showOnlyFourNumbersOfCardNumber());
                 throw new AlreayProcessedException(message: 'refund already processed');
             }
             $this->logger->warning('unable to process refund for '.$transactionDto->showOnlyFourNumbersOfCardNumber());

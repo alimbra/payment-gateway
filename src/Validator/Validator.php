@@ -12,7 +12,7 @@ use Psr\Log\LoggerInterface;
 class Validator
 {
     public const MIN_AMOUNT = 10000;
-    public function __construct(protected LoggerInterface $logger)
+    public function __construct(private LoggerInterface $logger)
     {
     }
 
@@ -22,7 +22,7 @@ class Validator
     public function checkAmountValidityForCapture(CreditCardWithPayment $creditCard, ?string $amount): void
     {
         if (null === $amount || $amount !== $creditCard->getAmount()) {
-            $this->logger->error('Invalid Amount for'.$creditCard->showOnlyFourNumbersOfCardNumber());
+            $this->logger->error('Invalid Amount for '.$creditCard->showOnlyFourNumbersOfCardNumber());
             throw new InvalidAmountException();
         }
     }

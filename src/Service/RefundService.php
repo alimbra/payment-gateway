@@ -12,23 +12,20 @@ use App\Exceptions\UnableToProcessException;
 use App\Service\DbManager\DbManagerInterface;
 use App\Service\Operation\OperationsPayment;
 use App\Service\TokenManager\TokenManager;
-use App\Validator\Validator;
-use Exception;
 use Psr\Log\LoggerInterface;
 
 class RefundService
 {
     public function __construct(
-        protected DbManagerInterface $dbManager,
-        protected OperationsPayment $operationsPayment,
-        protected TokenManager $tokenManager,
-        protected Validator $validator,
+        private DbManagerInterface $dbManager,
+        private OperationsPayment $operationsPayment,
+        private TokenManager $tokenManager,
         private LoggerInterface $logger,
     ) {
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function refund(IdentifierWithAmountDto $identifierWithAmountDto): string
     {
@@ -40,19 +37,19 @@ class RefundService
     /**
      * @throws AlreayProcessedExceptionAlias
      * @throws UnableToProcessException
-     * @throws Exception
+     * @throws \Exception
      */
     private function processRefund(IdentifierWithAmountDto $token): TransactionDto
     {
         if (!$token->getToken()) {
             $this->logger->error('transaction id not given');
-            throw new Exception(message: 'Transaction id not given');
+            throw new \Exception(message: 'Transaction id not given');
         }
 
         $transactionDto = $this->dbManager->get($token->getToken());
         if (!$transactionDto instanceof TransactionDto) {
-            $this->logger->error('Transaction not found with key'.$token->getToken());
-            throw new Exception(message: 'Transaction not found');
+            $this->logger->error('Transaction not found with key '.$token->getToken());
+            throw new \Exception(message: 'Transaction not found');
         }
 
         $this->operationsPayment->processRefund($transactionDto);
@@ -62,7 +59,7 @@ class RefundService
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     private function createRefund(TransactionDto $transactionDto): string
     {

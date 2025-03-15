@@ -11,11 +11,11 @@ class FromRequestToToken
 {
     public const TOKEN_NAME = 'auth_token';
     public const AMOUNT_NAME = 'amount';
-    protected IdentifierWithAmountDto $identifierWithAmountDto;
+    private IdentifierWithAmountDto $identifierWithAmountDto;
 
     public function __construct(
-        protected Request $request,
-        protected string $tokenName = self::TOKEN_NAME,
+        Request $request,
+        string $tokenName = self::TOKEN_NAME,
     ) {
         /** @var array{string}|array{string, amount: int} $content */
         $content = json_decode($request->getContent(), true);
